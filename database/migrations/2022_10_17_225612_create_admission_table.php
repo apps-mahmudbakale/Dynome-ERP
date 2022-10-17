@@ -13,13 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('subject_grade', function (Blueprint $table) {
+        Schema::create('admission', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->boolean('status');
+            $table->integer('application_id');
+            $table->integer('program_id');
+            $table->string('adm_no');
+            $table->string('academic_session');
+            $table->integer('batch');
+            $table->boolean('status')->default(false);
             $table->integer('created_by');
             $table->integer('updated_by');
-            $table->integer('deleted_by');
+            $table->integer('deleted_id');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject_grade');
+        Schema::dropIfExists('admission');
     }
 };

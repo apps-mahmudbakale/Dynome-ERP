@@ -13,10 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('subject_grade', function (Blueprint $table) {
+        Schema::create('deferment', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->boolean('status');
+            $table->integer('application_id');
+            $table->date('from');
+            $table->date('to');
+            $table->string('academic_session');
+            $table->integer('semester')->default(0);
+            $table->text('description');
+            $table->string('user_type');
+            $table->boolean('status')->default(false);
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->integer('deleted_by');
@@ -32,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject_grade');
+        Schema::dropIfExists('deferment');
     }
 };
